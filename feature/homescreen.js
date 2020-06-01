@@ -152,7 +152,15 @@ function HomeScreen({navigation}) {
                 <View style={[{width: 150}]}>
                   <Button
                     title="Detail"
-                    onPress={() => navigation.navigate('Detail')}
+                    onPress={() =>
+                      navigation.navigate('Detail', {
+                        name: item.name,
+                        hp: item.hp,
+                        defense: item.defense,
+                        attack: item.attack,
+                        type: item.type,
+                      })
+                    }
                   />
                 </View>
                 <View style={styles.width50}>

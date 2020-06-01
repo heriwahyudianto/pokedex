@@ -1,24 +1,12 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {SafeAreaView, View, Text, StatusBar} from 'react-native';
-import HomeScreen from './component/homescreen';
+import HomeScreen from './feature/homescreen';
+import Detail from './feature/detail';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
-
-function Detail() {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <View>
-          <Text>asdas</Text>
-        </View>
-      </SafeAreaView>
-    </>
-  );
-}
 
 const App: () => React$Node = () => {
   return (

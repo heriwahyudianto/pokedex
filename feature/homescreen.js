@@ -5,19 +5,10 @@ import {
   Text,
   StatusBar,
   FlatList,
-  TouchableOpacity,
   TextInput,
   Button,
 } from 'react-native';
 import styles from '../style';
-
-function Item({id, title, selected, onSelect}) {
-  return (
-    <TouchableOpacity onPress={() => onSelect(id)}>
-      <Text style={styles.button}>X</Text>
-    </TouchableOpacity>
-  );
-}
 
 function HomeScreen({navigation}) {
   const [selected, setSelected] = React.useState(new Map());
@@ -39,10 +30,12 @@ function HomeScreen({navigation}) {
   const [defense, setDefense] = React.useState('');
   const [attack, setAttack] = React.useState('');
   const [id, setId] = React.useState(11);
-  const onSelect = (key) => {
+
+  const onDelete = (key) => {
     setData(data.filter((item) => item.key !== key));
     return data;
   };
+
   const AddPokemon = () => {
     if (type !== '') {
       //mandatory
@@ -68,68 +61,41 @@ function HomeScreen({navigation}) {
       <SafeAreaView>
         <>
           <View>
-            <Text>Add Pokemon</Text>
+            <Text
+              style={[
+                styles.ml10,
+                styles.mr10,
+                styles.sectionTitle,
+                styles.mt10,
+              ]}>
+              Add Pokemon
+            </Text>
             <TextInput
-              style={{
-                height: 40,
-                borderColor: 'gray',
-                borderWidth: 1,
-                marginLeft: 10,
-                marginRight: 10,
-                marginTop: 10,
-              }}
+              style={styles.textInput}
               placeholder="Name"
               onChangeText={(name) => setName(name)}
               defaultValue={name}
             />
             <TextInput
-              style={{
-                height: 40,
-                borderColor: 'gray',
-                borderWidth: 1,
-                marginLeft: 10,
-                marginRight: 10,
-                marginTop: 10,
-              }}
+              style={styles.textInput}
               placeholder="HP"
               onChangeText={(hp) => setHp(hp)}
               defaultValue={hp}
             />
             <TextInput
-              style={{
-                height: 40,
-                borderColor: 'gray',
-                borderWidth: 1,
-                marginLeft: 10,
-                marginRight: 10,
-                marginTop: 10,
-              }}
+              style={styles.textInput}
               placeholder="Attack"
               onChangeText={(attack) => setAttack(attack)}
               defaultValue={attack}
             />
             <TextInput
-              style={{
-                height: 40,
-                borderColor: 'gray',
-                borderWidth: 1,
-                marginLeft: 10,
-                marginRight: 10,
-                marginTop: 10,
-              }}
+              style={styles.textInput}
               placeholder="Defense"
               onChangeText={(defense) => setDefense(defense)}
               defaultValue={defense}
             />
             <TextInput
-              style={{
-                height: 40,
-                borderColor: 'red',
-                borderWidth: 1,
-                marginLeft: 10,
-                marginRight: 10,
-                marginTop: 10,
-              }}
+              style={styles.textInput}
               placeholder="Mandatory Type"
               onChangeText={(type) => setType(type)}
               defaultValue={type}
@@ -137,19 +103,21 @@ function HomeScreen({navigation}) {
             <Button
               onPress={() => AddPokemon()}
               title="ADD"
-              color="#841584"
               accessibilityLabel="ADD"
             />
           </View>
+          <Text style={[styles.mt30, styles.sectionTitle, styles.ml10]}>
+            Pokemon List
+          </Text>
           <FlatList
-            style={{marginTop: 30}}
+            style={[styles.ml10, styles.mr10, styles.mt10]}
             data={data}
             renderItem={({item}) => (
-              <View style={styles.flexRow}>
+              <View style={[styles.listCard, styles.mt10, styles.flexRow]}>
                 <View>
-                  <Text>{item.name}</Text>
+                  <Text style={[styles.sectionDescription, styles.ml10]}>{item.name}</Text>
                 </View>
-                <View style={[{width: 150}]}>
+                <View>
                   <Button
                     title="Detail"
                     onPress={() =>
@@ -162,14 +130,7 @@ function HomeScreen({navigation}) {
                       })
                     }
                   />
-                </View>
-                <View style={styles.width50}>
-                  <Item
-                    id={item.key}
-                    title={item.name}
-                    selected={!!selected.get(item.key)}
-                    onSelect={onSelect}
-                  />
+                  <Button title="Delete" onPress={() => onDelete(item.key)} />
                 </View>
               </View>
             )}

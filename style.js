@@ -51,6 +51,27 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   width50: {width: 50},
+  textInput: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 10,
+    backgroundColor: '#ffffff',
+    paddingLeft: 5,
+  },
+  mt30: {marginTop: 30},
+  mt10: {marginTop: 10},
+  ml10: {marginLeft: 10},
+  mr10: {marginRight: 10},
+  listCard: {
+    borderWidth: 1,
+    borderColor: '#efefef',
+    padding: 5,
+    borderRadius: 4,
+    backgroundColor: '#ffffff',
+  },
 });
 
 export default styles;

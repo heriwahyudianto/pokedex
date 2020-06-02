@@ -100,11 +100,13 @@ function HomeScreen({navigation}) {
               onChangeText={(type) => setType(type)}
               defaultValue={type}
             />
-            <Button
-              onPress={() => AddPokemon()}
-              title="ADD"
-              accessibilityLabel="ADD"
-            />
+            <View style={[styles.ml10, styles.mt10, styles.mr10]}>
+              <Button
+                onPress={() => AddPokemon()}
+                title="ADD"
+                accessibilityLabel="ADD"
+              />
+            </View>
           </View>
           <Text style={[styles.mt30, styles.sectionTitle, styles.ml10]}>
             Pokemon List
@@ -115,7 +117,9 @@ function HomeScreen({navigation}) {
             renderItem={({item}) => (
               <View style={[styles.listCard, styles.mt10, styles.flexRow]}>
                 <View>
-                  <Text style={[styles.sectionDescription, styles.ml10]}>{item.name}</Text>
+                  <Text style={[styles.sectionDescription, styles.ml10]}>
+                    {item.name}
+                  </Text>
                 </View>
                 <View>
                   <Button
@@ -130,7 +134,9 @@ function HomeScreen({navigation}) {
                       })
                     }
                   />
-                  <Button title="Delete" onPress={() => onDelete(item.key)} />
+                  <View style={[styles.mt10]}>
+                    <Button title="Delete" onPress={() => onDelete(item.key)} />
+                  </View>
                 </View>
               </View>
             )}
